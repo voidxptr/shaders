@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0uuv5ypbq08b"]
+
+[ext_resource type="Texture2D" uid="uid://c1i6j02gwlu2p" path="res://src/dots/sad.png" id="1_g31qv"]
+[ext_resource type="Shader" path="res://src/dots/dotsAndDotsColor.gdshader" id="2_wq546"]
+[ext_resource type="Shader" path="res://src/dots/dotsAndDots.gdshader" id="3_fohli"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ytrjn"]
+shader = ExtResource("2_wq546")
+shader_parameter/limit_high = 0.6
+shader_parameter/limit_low = 0.2
+shader_parameter/lod = 0.6
+shader_parameter/limit_dots_high = 0.7
+shader_parameter/limit_dots_low = 0.3
+shader_parameter/lod_dots = 1.0
+shader_parameter/dot_freshhold = 0.96
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lh3bd"]
+shader = ExtResource("3_fohli")
+shader_parameter/limit_high = 0.6
+shader_parameter/limit_low = 0.2
+shader_parameter/lod = 0.8
+shader_parameter/limit_dots_high = 0.7
+shader_parameter/limit_dots_low = 0.3
+shader_parameter/lod_dots = 0.0
+shader_parameter/dot_freshhold = 0.97
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BG" type="CanvasLayer" parent="."]
+
+[node name="BG" type="ColorRect" parent="BG"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BG"]
+position = Vector2(292, 323)
+texture = ExtResource("1_g31qv")
+
+[node name="Dots" type="CanvasLayer" parent="."]
+layer = 10
+visible = false
+
+[node name="Shader" type="ColorRect" parent="Dots"]
+material = SubResource("ShaderMaterial_ytrjn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DotsColor" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Shader" type="ColorRect" parent="DotsColor"]
+material = SubResource("ShaderMaterial_lh3bd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)

@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnfee67utqab1"]
+
+[ext_resource type="Shader" path="res://src/imgWarp/img_warp.gdshader" id="1_5qe48"]
+[ext_resource type="Texture2D" uid="uid://bh481iskc3hqb" path="res://src/testingImages/Alpaca.jpg" id="2_knw42"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kp8r1"]
+shader = ExtResource("1_5qe48")
+shader_parameter/x_index = 0
+shader_parameter/y_index = 1
+shader_parameter/mix_by_color_index = 2
+shader_parameter/warp_scale = 55.4
+shader_parameter/inver_warp = true
+shader_parameter/warp_by_pixel = true
+shader_parameter/enable_mix = true
+shader_parameter/mix_value = 0.29
+shader_parameter/mix_by_color = true
+shader_parameter/warp_img = ExtResource("2_knw42")
+
+[node name="imgWarp" type="Node2D"]
+
+[node name="Warp" type="CanvasLayer" parent="."]
+
+[node name="Warp" type="ColorRect" parent="Warp"]
+material = SubResource("ShaderMaterial_kp8r1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Img" type="Sprite2D" parent="."]
+texture = ExtResource("2_knw42")
+
+[node name="Camera2D" type="Camera2D" parent="."]
