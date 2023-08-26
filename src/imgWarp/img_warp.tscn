@@ -8,11 +8,11 @@ shader = ExtResource("1_5qe48")
 shader_parameter/x_index = 0
 shader_parameter/y_index = 1
 shader_parameter/mix_by_color_index = 2
-shader_parameter/warp_scale = 37.8
+shader_parameter/warp_scale = 93.2
 shader_parameter/inver_warp = true
 shader_parameter/warp_by_pixel = true
 shader_parameter/enable_mix = true
-shader_parameter/mix_value = 0.62
+shader_parameter/mix_value = 0.55
 shader_parameter/mix_by_color = true
 shader_parameter/warp_img = ExtResource("2_knw42")
 

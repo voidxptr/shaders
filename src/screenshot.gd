@@ -7,8 +7,6 @@ func takeScreenshot()->Image:
 
 func render()->void:
 	var image:Image = takeScreenshot()
-	image.flip_y()
-	
 	
 	image.save_png(SCREEN_SHOT_PATH + "/" + str(Time.get_unix_time_from_system()) + ".png" )
 	
