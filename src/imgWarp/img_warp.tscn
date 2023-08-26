@@ -1,20 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnfee67utqab1"]
+[gd_scene load_steps=5 format=3 uid="uid://bnfee67utqab1"]
 
 [ext_resource type="Shader" path="res://src/imgWarp/img_warp.gdshader" id="1_5qe48"]
 [ext_resource type="Texture2D" uid="uid://bh481iskc3hqb" path="res://src/testingImages/Alpaca.jpg" id="2_knw42"]
+[ext_resource type="Texture2D" uid="uid://b0gm487dsxclh" path="res://src/testingImages/Water.jpg" id="3_u21u4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kp8r1"]
 shader = ExtResource("1_5qe48")
 shader_parameter/x_index = 0
-shader_parameter/y_index = 1
-shader_parameter/mix_by_color_index = 2
-shader_parameter/warp_scale = 93.2
+shader_parameter/y_index = 2
+shader_parameter/mix_by_color_index = 1
+shader_parameter/warp_scale = 36.6
 shader_parameter/inver_warp = true
 shader_parameter/warp_by_pixel = true
 shader_parameter/enable_mix = true
-shader_parameter/mix_value = 0.55
+shader_parameter/mix_value = 0.0
 shader_parameter/mix_by_color = true
-shader_parameter/warp_img = ExtResource("2_knw42")
+shader_parameter/warp_img = ExtResource("3_u21u4")
 
 [node name="imgWarp" type="Node2D"]
 
