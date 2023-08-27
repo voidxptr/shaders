@@ -1,3 +1,10 @@
+// This Shader takes the SCREEN_TEXTURE (aka: The current frame buffer)
+// and warps it's UV by the colors of the wapr_img. Wich color channel
+// is used for x, and y can be set under the image contex field in the
+// shader uniforms. The channels are ordered as follows: [r, g, b, a].
+
+
+
 shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE:hint_screen_texture;
@@ -19,7 +26,7 @@ uniform bool warp_by_pixel = true;
 group_uniforms color_mix;
 uniform bool enable_mix = false;
 uniform float mix_value:hint_range(0.0, 1.0, 0.01) = 0.15;
-uniform bool mix_by_color = true;
+uniform bool mix_by_color = true;                                   // Usefull for testing.
 
 
 void fragment() {
