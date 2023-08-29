@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://6mucxttesmsk"]
+
+[ext_resource type="Shader" path="res://src/saturationMasking/saturation_masking.gdshader" id="1_1hp1r"]
+[ext_resource type="Texture2D" uid="uid://bejch47m6txqv" path="res://src/testingImages/flowers.jpg" id="2_2pcnp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rwvj1"]
+shader = ExtResource("1_1hp1r")
+
+[node name="saturationMasking" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="shader" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_rwvj1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Texture" type="Sprite2D" parent="."]
+texture = ExtResource("2_2pcnp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
