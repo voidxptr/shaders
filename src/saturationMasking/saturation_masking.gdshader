@@ -2,22 +2,26 @@ shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE:hint_screen_texture,  filter_linear;
 
+group_uniforms masking_color;
+uniform bool mask_by_col = true;
+uniform vec3 mask_by_col_color:source_color;
+uniform bool mask_by_col_inv = false;
+
 group_uniforms masking_sat;
-uniform bool mask_by_sat = true;
+uniform bool mask_by_sat = false;
 uniform float mask_by_sat_min:hint_range(0.0, 1.0, 0.01) = 0.6;
 uniform float mask_by_sat_max:hint_range(0.0, 10.0, 0.1) = 6.9;
 uniform bool mask_by_sat_inv = false;
 
 group_uniforms masking_val;
-uniform bool mask_by_val = true;
+uniform bool mask_by_val = false;
 uniform float mask_by_val_min:hint_range(0.0, 1.0, 0.01) = 0.6;
 uniform float mask_by_val_max:hint_range(0.0, 10.0, 0.1) = 6.9;
 uniform bool mask_by_val_inv = false;
 
-group_uniforms masking_color;
-uniform bool mask_by_col = false;
-uniform vec3 mask_by_col_color:source_color;
-uniform bool mask_by_col_inv = false;
+group_uniforms mask_color_overlay;
+uniform bool mask_color_overlay = false;
+uniform vec3 mask_color_color:source_color;
 
 group_uniforms debug;
 uniform bool debug_visual_mask = false;
@@ -94,9 +98,12 @@ void fragment() {
 		mask *= clamp(col, 0.0, 1.0);
 	}
 	
-	
-	
 	COLOR.rgb = mix(vec3(average(tex.rgb)), tex.rgb, mask);
+	
+	if(mask_color_overlay)
+	{
+		COLOR.rgb = mix(vec3(average(tex.rgb)), average(tex.rgb) * mask_color_color, mask);
+	}
 	
 //	COLOR.rgb = normalize(texblured.rgb);
 	
