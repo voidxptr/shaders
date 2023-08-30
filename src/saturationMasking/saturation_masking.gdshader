@@ -2,12 +2,25 @@ shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE:hint_screen_texture,  filter_linear;
 
-group_uniforms masking;
+group_uniforms masking_sat;
 uniform bool mask_by_sat = true;
-uniform float mask_by_sat_min:hint_range(0.0, 10.0, 0.1) = 1.1;
+uniform float mask_by_sat_min:hint_range(0.0, 1.0, 0.01) = 0.6;
 uniform float mask_by_sat_max:hint_range(0.0, 10.0, 0.1) = 6.9;
 uniform bool mask_by_sat_inv = false;
 
+group_uniforms masking_val;
+uniform bool mask_by_val = true;
+uniform float mask_by_val_min:hint_range(0.0, 1.0, 0.01) = 0.6;
+uniform float mask_by_val_max:hint_range(0.0, 10.0, 0.1) = 6.9;
+uniform bool mask_by_val_inv = false;
+
+group_uniforms masking_color;
+uniform bool mask_by_col = false;
+uniform vec3 mask_by_col_color:source_color;
+uniform float mask_by_col_bias:hint_range(0.0, 1.0, 0.01) = 0.3;
+uniform bool mask_by_col_inv = false;
+
+group_uniforms masking;
 uniform bool box_blur_mask = true; 
 
 group_uniforms debug;
@@ -58,12 +71,29 @@ void fragment() {
 	{
 		float sat = saturation(texblured.rgb);
 		
-		sat = clamp((sat * mask_by_sat_max) - mask_by_sat_min, 0.0, 1.0);
+		sat = clamp((sat * mask_by_sat_max) - (mask_by_sat_min * mask_by_sat_max), 0.0, 1.0);
 
 		if(mask_by_sat_inv) {sat = 1.0 - sat;}
 		
 		mask *= sat;
 	}
+	
+	if(mask_by_val)
+	{
+		float val = average(texblured.rgb);
+		
+		val = clamp((val * mask_by_val_max) - (mask_by_val_min * mask_by_val_max), 0.0, 1.0);
+
+		if(mask_by_val_inv) {val = 1.0 - val;}
+		
+		mask *= val;
+	}
+	
+	if(true)
+	{
+		//float col = dot()
+	}
+	
 	
 	
 	COLOR.rgb = mix(tex.rgb, vec3(average(tex.rgb)), mask);

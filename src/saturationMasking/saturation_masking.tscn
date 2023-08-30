@@ -5,12 +5,20 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rwvj1"]
 shader = ExtResource("1_1hp1r")
-shader_parameter/mask_by_sat = true
-shader_parameter/mask_by_sat_min = 0.4
-shader_parameter/mask_by_sat_max = 4.7
+shader_parameter/mask_by_sat = false
+shader_parameter/mask_by_sat_min = 0.15
+shader_parameter/mask_by_sat_max = 3.0
 shader_parameter/mask_by_sat_inv = true
+shader_parameter/mask_by_val = false
+shader_parameter/mask_by_val_min = 0.89
+shader_parameter/mask_by_val_max = 1.8
+shader_parameter/mask_by_val_inv = true
+shader_parameter/mask_by_col = true
+shader_parameter/mask_by_col_color = null
+shader_parameter/mask_by_col_bias = 0.3
+shader_parameter/mask_by_col_inv = false
 shader_parameter/box_blur_mask = true
-shader_parameter/debug_visual_mask = false
+shader_parameter/debug_visual_mask = true
 
 [node name="saturationMasking" type="Node2D"]
 
