@@ -17,11 +17,7 @@ uniform bool mask_by_val_inv = false;
 group_uniforms masking_color;
 uniform bool mask_by_col = false;
 uniform vec3 mask_by_col_color:source_color;
-uniform float mask_by_col_bias:hint_range(0.0, 1.0, 0.01) = 0.3;
 uniform bool mask_by_col_inv = false;
-
-group_uniforms masking;
-uniform bool box_blur_mask = true; 
 
 group_uniforms debug;
 uniform bool debug_visual_mask = false;
@@ -75,7 +71,7 @@ void fragment() {
 
 		if(mask_by_sat_inv) {sat = 1.0 - sat;}
 		
-		mask *= sat;
+		mask *= clamp(sat, 0.0, 1.0);
 	}
 	
 	if(mask_by_val)
@@ -86,17 +82,23 @@ void fragment() {
 
 		if(mask_by_val_inv) {val = 1.0 - val;}
 		
-		mask *= val;
+		mask *= clamp(val, 0.0, 1.0);
 	}
 	
-	if(true)
+	if(mask_by_col)
 	{
-		//float col = dot()
+		float col = clamp(length(mask_by_col_color - texblured.rgb), 0.0, 1.0);
+		
+		if(mask_by_col_inv) {col = 1.0 - col;}
+		
+		mask *= clamp(col, 0.0, 1.0);
 	}
 	
 	
 	
-	COLOR.rgb = mix(tex.rgb, vec3(average(tex.rgb)), mask);
+	COLOR.rgb = mix(vec3(average(tex.rgb)), tex.rgb, mask);
+	
+//	COLOR.rgb = normalize(texblured.rgb);
 	
 	if(debug_visual_mask) { COLOR.rgb = vec3(mask); }
 }
