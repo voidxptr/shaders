@@ -6,8 +6,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rwvj1"]
 shader = ExtResource("1_1hp1r")
 shader_parameter/mask_by_sat = true
-shader_parameter/mask_by_sat_min = 0.29
-shader_parameter/mask_by_sat_max = 1.0
+shader_parameter/mask_by_sat_min = 0.4
+shader_parameter/mask_by_sat_max = 4.7
 shader_parameter/mask_by_sat_inv = true
 shader_parameter/box_blur_mask = true
 shader_parameter/debug_visual_mask = false

@@ -4,8 +4,8 @@ uniform sampler2D SCREEN_TEXTURE:hint_screen_texture,  filter_linear;
 
 group_uniforms masking;
 uniform bool mask_by_sat = true;
-uniform float mask_by_sat_min:hint_range(0.0, 1.0, 0.01) = 0.35;
-uniform float mask_by_sat_max:hint_range(0.0, 1.0, 0.01) = 0.5;
+uniform float mask_by_sat_min:hint_range(0.0, 10.0, 0.1) = 1.1;
+uniform float mask_by_sat_max:hint_range(0.0, 10.0, 0.1) = 6.9;
 uniform bool mask_by_sat_inv = false;
 
 uniform bool box_blur_mask = true; 
@@ -58,7 +58,8 @@ void fragment() {
 	{
 		float sat = saturation(texblured.rgb);
 		
-		sat = sat >= mask_by_sat_min && sat <= mask_by_sat_max ? 1.0 : 0.0;		// using sat as tmp var cause im lazy
+		sat = clamp((sat * mask_by_sat_max) - mask_by_sat_min, 0.0, 1.0);
+
 		if(mask_by_sat_inv) {sat = 1.0 - sat;}
 		
 		mask *= sat;
