@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d3g87ivk07l5q"]
+
+[node name="template" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Shader" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Image" type="Sprite2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
