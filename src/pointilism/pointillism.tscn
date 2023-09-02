@@ -7,6 +7,7 @@
 shader = ExtResource("1_osjq0")
 shader_parameter/lod = 1.0
 shader_parameter/colors = 8
+shader_parameter/radius = 50
 
 [node name="pointillism" type="Node2D"]
 
