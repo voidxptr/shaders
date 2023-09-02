@@ -1,10 +1,19 @@
-[gd_scene format=3 uid="uid://ocmho4q3p0e4"]
+[gd_scene load_steps=4 format=3 uid="uid://ocmho4q3p0e4"]
+
+[ext_resource type="Shader" path="res://src/pointilism/pointillism.gdshader" id="1_osjq0"]
+[ext_resource type="Texture2D" uid="uid://bejch47m6txqv" path="res://src/testingImages/flowers.jpg" id="2_ex0wk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wkfxm"]
+shader = ExtResource("1_osjq0")
+shader_parameter/lod = 1.0
+shader_parameter/colors = 8
 
 [node name="pointillism" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Shader" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_wkfxm")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,5 +22,6 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Image" type="Sprite2D" parent="."]
+texture = ExtResource("2_ex0wk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
