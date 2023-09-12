@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://6mucxttesmsk"]
+[gd_scene load_steps=6 format=3 uid="uid://6mucxttesmsk"]
 
 [ext_resource type="Shader" path="res://src/saturationMasking/saturation_masking.gdshader" id="1_1hp1r"]
+[ext_resource type="Shader" path="res://src/saturationMasking/visualize.gdshader" id="1_o3v1x"]
 [ext_resource type="Texture2D" uid="uid://bejch47m6txqv" path="res://src/testingImages/flowers.jpg" id="2_2pcnp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_25lfk"]
+shader = ExtResource("1_o3v1x")
+shader_parameter/mix_val = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rwvj1"]
 shader = ExtResource("1_1hp1r")
@@ -21,6 +26,17 @@ shader_parameter/mask_color_color = Color(0.67451, 0.278431, 0, 1)
 shader_parameter/debug_visual_mask = false
 
 [node name="saturationMasking" type="Node2D"]
+
+[node name="Visualize" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="Visualize"]
+material = SubResource("ShaderMaterial_25lfk")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
